@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+/* 
+  colors 
+    #7AA874 #7C9070 #9CA777
+  fonts
+    font-family: 'Geologica', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Oswald', sans-serif;
+*/
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f3ec;
+}
+
+.box {
+  border-radius: 12px;
+  min-height: 80px;
+  background: #fff;
+  box-shadow: rgba(122, 168, 116, 0.3) 0px 2px 8px 0px;
+  padding: 16px 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+}
