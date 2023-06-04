@@ -31,7 +31,18 @@
   min-height: 80px;
   background: #fff;
   box-shadow: rgba(122, 168, 116, 0.3) 0px 2px 8px 0px;
+  overflow: hidden;
+}
+.box.spacing {
   padding: 16px 20px;
+}
+.ibg {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 480px) {
