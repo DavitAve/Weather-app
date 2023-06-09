@@ -16,10 +16,9 @@ export default module.exports = {
     container: {
       center: true,
       screens: {
-        sm: "560px",
-        md: "768px",
-        lg: "920px",
-        xl: "1080px",
+        sm: "95%",
+        md: "560px",
+        xl: "768px",
       },
     },
   },

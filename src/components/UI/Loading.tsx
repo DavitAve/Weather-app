@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import LoadingImg from "../../assets/images/loading-cloud.gif";
+import LoadingImg from "../../assets/gifs/loading-cloud.gif";
 
 interface ILoadingProps {
   size?: string;

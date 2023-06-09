@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
   outline: none;
+  color: #2e2e2e;
 }
 
 /* 
@@ -43,6 +44,25 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.gradient {
+  background-image: linear-gradient(
+    45deg,
+    hsl(113deg 23% 56%) 0%,
+    hsl(138deg 28% 54%) 28%,
+    hsl(154deg 35% 50%) 41%,
+    hsl(166deg 53% 44%) 49%,
+    hsl(175deg 100% 34%) 54%,
+    hsl(180deg 100% 34%) 58%,
+    hsl(185deg 100% 38%) 62%,
+    hsl(190deg 100% 41%) 66%,
+    hsl(193deg 100% 43%) 71%,
+    hsl(197deg 100% 46%) 76%,
+    hsl(199deg 100% 48%) 82%,
+    hsl(202deg 100% 49%) 90%,
+    hsl(211deg 100% 62%) 100%
+  );
 }
 
 @media only screen and (max-width: 480px) {

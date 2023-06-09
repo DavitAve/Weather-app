@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 
 interface IWheatherImgProps {
   img: string;
@@ -7,11 +7,13 @@ interface IWheatherImgProps {
 const WheatherImg: FunctionComponent<IWheatherImgProps> = ({ img }) => {
   const [src, setSrc] = useState<string>("");
 
-  const dynamicPath = () => {
-    import(`../assets/images/${img}.gif`)
-      .then((image) => setSrc(image.default))
-      .catch((error) => console.error(error));
-  };
+  const dynamicPath = useCallback(() => {
+    if (img) {
+      import(`../assets/gifs/${img}.gif`)
+        .then((image) => setSrc(image.default))
+        .catch((error) => console.error(error));
+    }
+  }, [img]);
 
   useEffect(dynamicPath, [img]);
 
