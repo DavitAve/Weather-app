@@ -8,6 +8,7 @@ import useAppQuery from "../hooks/useAppQuery";
 import Loading from "./UI/Loading";
 import SunRiseSet from "./SunRiseSet";
 import moment from "moment-timezone";
+import WeatherTable from "./WeatherBox/WeatherTable";
 
 const UserWeather: FunctionComponent = () => {
   const jun = moment(Date.now());
@@ -93,40 +94,7 @@ const UserWeather: FunctionComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mt-7 mb-4 border-[1px] border-[#7e7e7e] mx-4">
-              <div className="flex border-[1px] border-b-[#7e7e7e] font-medium">
-                <div className="w-[50%] text-center border-r-[1px] border-[#7e7e7e] py-[2px] font-medium">
-                  Humidity
-                </div>
-                <div className="w-[50%] text-center py-[2px]">
-                  {weather?.main?.humidity}%
-                </div>
-              </div>
-              <div className="flex border-[1px] border-b-[#7e7e7e] font-medium">
-                <div className="w-[50%] text-center border-r-[1px] border-[#7e7e7e] py-[2px] font-medium">
-                  Pressure
-                </div>
-                <div className="w-[50%] text-center py-[2px]">
-                  {weather?.main?.pressure} hPa
-                </div>
-              </div>
-              <div className="flex border-[1px] border-b-[#7e7e7e] font-medium">
-                <div className="w-[50%] text-center border-r-[1px] border-[#7e7e7e] py-[2px] font-medium">
-                  Temp max
-                </div>
-                <div className="w-[50%] text-center py-[2px]">
-                  {toCelsius(weather?.main?.temp_max)}℃
-                </div>
-              </div>
-              <div className="flex  font-medium">
-                <div className="w-[50%] text-center border-r-[1px] border-[#7e7e7e] py-[2px] font-medium">
-                  Temp min
-                </div>
-                <div className="w-[50%] text-center py-[2px]">
-                  {toCelsius(weather?.main?.temp_min)}℃
-                </div>
-              </div>
-            </div>
+            <WeatherTable weather={weather} />
             <div className="flex justify-center">
               <SunRiseSet
                 rise={weather?.sys?.sunrise}
