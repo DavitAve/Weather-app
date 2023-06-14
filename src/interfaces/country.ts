@@ -8,3 +8,17 @@ export interface ILocation {
   country: string;
   state: string;
 }
+
+export interface ICountryData {
+  name: {
+    common: string;
+    official: string;
+    nativeName: {
+      [key: string]: {
+        common: string;
+        official: string;
+      };
+    };
+  };
+  timezones: string[];
+}

@@ -8,7 +8,8 @@ import WeatherBox from "./WeatherBox/WeatherBox";
 import WeatherStatistic from "./WeatherStatistic";
 
 const UserWeather: FunctionComponent = () => {
-  const { isLoading: userLoading, data: user } = useAppQuery(
+  const { isLoading: userLoading, data: user } = useAppQuery<IUserInfo>(
+    "userInfo",
     "https://ipapi.co/json/",
     "get",
     {
@@ -32,6 +33,7 @@ const UserWeather: FunctionComponent = () => {
     data: weather,
     isLoading: weatherLoading,
   } = useAppMutation<IWeatherData>(
+    "userWeather",
     "https://api.openweathermap.org/data/2.5/weather?q=city&appid=",
     "get"
   );
@@ -41,6 +43,7 @@ const UserWeather: FunctionComponent = () => {
     data: weatherFive,
     isLoading: weatherFiveLoading,
   } = useAppMutation<IWeatherFiveData>(
+    "userWeatherFive",
     "https://api.openweathermap.org/data/2.5/weather?q=city&appid=",
     "get"
   );

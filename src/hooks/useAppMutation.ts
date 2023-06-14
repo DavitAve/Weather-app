@@ -1,7 +1,9 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { MutationOptions, UseMutationResult, useMutation } from "react-query";
+import { queryClient } from "../main";
 
 export const useAppMutation = <T>(
+  key: string,
   url: string,
   method: string,
   options?: MutationOptions<
@@ -12,12 +14,18 @@ export const useAppMutation = <T>(
       body?: XMLHttpRequestBodyInit;
     },
     unknown
-  >
+  >,
+  save?: boolean
 ) => {
-  const mutation = useMutation({
+  const mutation = useMutation([key], {
     mutationFn: async ({ url: urlFromBody }: { url?: string }) => {
-      const res = await axios({ url: urlFromBody || url, method });
-      return res.data as T;
+      const res: AxiosResponse & { data: T } = await axios({
+        url: urlFromBody || url,
+        method,
+      });
+
+      save && queryClient.setQueryData([key], res.data);
+      return res.data;
     },
     ...options,
   });

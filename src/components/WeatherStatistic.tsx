@@ -11,7 +11,7 @@ interface IChart {
 }
 
 interface IWeatherStatProps {
-  weather: IWeatherFiveData;
+  weather: IWeatherFiveData | undefined;
   loading: boolean;
 }
 
@@ -45,7 +45,7 @@ const WeatherStatistic: FunctionComponent<IWeatherStatProps> = ({
           autoSelected: "zoom",
         },
       },
-      colors: ["#7AA874"],
+      colors: ["#9CA777"],
       dataLabels: {
         enabled: false,
       },
@@ -77,6 +77,7 @@ const WeatherStatistic: FunctionComponent<IWeatherStatProps> = ({
       },
       markers: {
         size: 5,
+        colors: "#7C9070",
         hover: {
           sizeOffset: 2,
         },
@@ -102,7 +103,7 @@ const WeatherStatistic: FunctionComponent<IWeatherStatProps> = ({
   };
 
   return (
-    <div className="box mt-8  bg-[#] relative">
+    <div className="box relative">
       <div className="h-12 w-full bg-[#7AA874] absolute">
         {loading && (
           <h1 className="text-center text-3xl text-white mt-1">Loading</h1>

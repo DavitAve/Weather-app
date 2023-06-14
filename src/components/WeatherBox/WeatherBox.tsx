@@ -9,25 +9,38 @@ import moment from "moment-timezone";
 
 interface IWeatherBoxProps {
   loading: boolean;
-  weather: IWeatherData;
-  location: any;
+  weather: IWeatherData | undefined;
+  location:
+    | {
+        timezone?: string;
+        timezoneValue?: string;
+        country_name?: string;
+        city?: string;
+      }
+    | undefined;
+  title?: string;
+  className?: string;
 }
 
 const WeatherBox: FunctionComponent<IWeatherBoxProps> = ({
   loading,
   weather,
   location,
+  title,
+  className = "",
 }) => {
   const jun = moment(Date.now());
 
   return (
-    <div className="box">
+    <div className={`box ${className}`}>
       <h1 className="text-3xl font-geologica bg-[#7AA874] p-3">
         {!loading ? (
           <>
-            <span className="font-light text-white">Your Location: </span>
+            <span className="font-light text-white">
+              {(title || "Your Location") + ": "}
+            </span>
             <span className="text-white">
-              {location?.city} {location?.country_name}
+              {location?.city || ""} {location?.country_name}
             </span>
           </>
         ) : (
@@ -40,7 +53,10 @@ const WeatherBox: FunctionComponent<IWeatherBoxProps> = ({
             <div className="flex justify-between px-4 items-center">
               <h1 className="text-3xl">Current weather</h1>
               <span className="text-xl font-medium">
-                {location && jun.tz(location?.timezone).format("h:mm A")}
+                {location &&
+                  (location.timezone
+                    ? jun.tz(location?.timezone || "")?.format("h:mm A")
+                    : location.timezoneValue)}
               </span>
             </div>
             <div className="flex justify-between md:flex-row flex-col">
@@ -57,7 +73,7 @@ const WeatherBox: FunctionComponent<IWeatherBoxProps> = ({
                 <div className="text-xl p-3 gradient rounded-xl">
                   <span className="text-white">Feels like: </span>
                   <span className="font-semibold text-white">
-                    {toCelsius(weather?.main?.feels_like)}℃
+                    {weather && toCelsius(weather?.main?.feels_like)}℃
                   </span>
                 </div>
                 <div className="flex flex-col items-end">
@@ -69,7 +85,8 @@ const WeatherBox: FunctionComponent<IWeatherBoxProps> = ({
                     </span>
                     <span className="text-sm text-medium flex items-center">
                       <span className="font-semibold mr-[2px]">Deg: </span>
-                      {Math.floor(weather?.wind?.deg * 0.017453292519943295)}
+                      {weather &&
+                        Math.floor(weather?.wind?.deg * 0.017453292519943295)}
                     </span>
                   </div>
                 </div>
@@ -78,8 +95,8 @@ const WeatherBox: FunctionComponent<IWeatherBoxProps> = ({
             <WeatherTable weather={weather} />
             <div className="flex justify-center">
               <SunRiseSet
-                rise={weather?.sys?.sunrise}
-                set={weather?.sys?.sunset}
+                rise={weather?.sys?.sunrise || 0}
+                set={weather?.sys?.sunset || 0}
               />
             </div>
           </div>
